@@ -12,10 +12,10 @@ enum PaymentStatus: string
     public function label(): string
     {
         return match ($this) {
-            self::Unpaid => 'Unpaid',
-            self::Paid => 'Paid',
-            self::Refunded => 'Refunded',
-            self::Partial => 'Partially paid',
+            self::Unpaid => 'გადაუხდელი',
+            self::Paid => 'გადახდილი',
+            self::Refunded => 'დაბრუნებული',
+            self::Partial => 'ნაწილობრივ გადახდილი',
         };
     }
 

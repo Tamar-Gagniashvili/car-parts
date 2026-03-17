@@ -18,11 +18,11 @@ enum MarketplaceSyncStatus: string
     public function label(): string
     {
         return match ($this) {
-            self::Never => 'Never synced',
-            self::Pending => 'Pending',
-            self::Syncing => 'Syncing',
-            self::Synced => 'Synced',
-            self::Failed => 'Failed',
+            self::Never => 'არასოდეს დასინქრონებულა',
+            self::Pending => 'მოლოდინში',
+            self::Syncing => 'სინქრონიზაცია მიმდინარეობს',
+            self::Synced => 'დასინქრონებულია',
+            self::Failed => 'შეცდომა',
         };
     }
 

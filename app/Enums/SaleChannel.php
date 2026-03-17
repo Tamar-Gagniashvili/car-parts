@@ -11,9 +11,9 @@ enum SaleChannel: string
     public function label(): string
     {
         return match ($this) {
-            self::Internal => 'Internal',
+            self::Internal => 'შიდა გაყიდვა',
             self::MyParts => 'MyParts.ge',
-            self::Other => 'Other',
+            self::Other => 'სხვა',
         };
     }
 

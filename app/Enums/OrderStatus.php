@@ -12,10 +12,10 @@ enum OrderStatus: string
     public function label(): string
     {
         return match ($this) {
-            self::Draft => 'Draft',
-            self::Confirmed => 'Confirmed',
-            self::Completed => 'Completed',
-            self::Cancelled => 'Cancelled',
+            self::Draft => 'დრაფტი',
+            self::Confirmed => 'დადასტურებული',
+            self::Completed => 'დასრულებული',
+            self::Cancelled => 'გაუქმებული',
         };
     }
 

@@ -14,12 +14,12 @@ enum InventoryMovementType: string
     public function label(): string
     {
         return match ($this) {
-            self::In => 'Stock In',
-            self::Out => 'Stock Out',
-            self::Sale => 'Sale',
-            self::Adjustment => 'Adjustment',
-            self::Reserve => 'Reserve',
-            self::Return => 'Return',
+            self::In => 'შემოსვლა',
+            self::Out => 'გასვლა',
+            self::Sale => 'გაყიდვა',
+            self::Adjustment => 'კორექტირება',
+            self::Reserve => 'დაჯავშნა',
+            self::Return => 'დაბრუნება',
         };
     }
 
