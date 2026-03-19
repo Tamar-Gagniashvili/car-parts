@@ -9,6 +9,7 @@ use Filament\Actions\EditAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Schema;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -44,21 +45,20 @@ class ImagesRelationManager extends RelationManager
                     ->sortable()
                     ->label('სორტირება')
                     ->alignEnd(),
-                TextColumn::make('thumb_url')
-                    ->limit(50)
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('large_url')
-                    ->limit(50)
-                    ->toggleable(isToggledHiddenByDefault: true),
+                ImageColumn::make('thumb_url')
+                    ->label('სურათი')
+                    ->square()
+                    ->size(64),
                 TextColumn::make('updated_at')->label('განახლდა')->since()->toggleable(isToggledHiddenByDefault: true),
             ])
             ->headerActions([
-                CreateAction::make(),
+                CreateAction::make()->iconButton(),
             ])
             ->actions([
-                EditAction::make(),
-                DeleteAction::make(),
+                EditAction::make()->iconButton(),
+                DeleteAction::make()->iconButton(),
             ])
+            ->emptyStateHeading('მონაცემები ვერ მოიძებნა')
             ->bulkActions([
                 DeleteBulkAction::make(),
             ]);

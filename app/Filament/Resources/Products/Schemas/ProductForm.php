@@ -6,6 +6,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\ViewField;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
@@ -48,12 +49,10 @@ class ProductForm
                         TextInput::make('cost_price')
                             ->label('თვითღირებულება')
                             ->numeric()
-                            ->prefix('₾')
                             ->helperText('არასავალდებულო.'),
                         TextInput::make('sale_price')
                             ->label('გასაყიდი ფასი')
                             ->numeric()
-                            ->prefix('₾')
                             ->helperText('არასავალდებულო.'),
                         TextInput::make('currency_id')
                             ->label('ვალუტა (ID)')
@@ -69,7 +68,9 @@ class ProductForm
                             ->numeric()
                             ->required()
                             ->default(0)
-                            ->helperText('ამჟამინდელი რაოდენობა (შემდგომში მოძრაობებით იმართება).'),
+                            ->disabled()
+                            ->dehydrated(false)
+                            ->helperText('მოძრაობებით (inventory movements) ითვლება. შესაცვლელად გამოიყენეთ მარაგის კორექტირება.'),
                         TextInput::make('condition_type_id')
                             ->label('მდგომარეობა (ID)')
                             ->numeric()
@@ -84,6 +85,17 @@ class ProductForm
                         Textarea::make('notes')
                             ->label('შენიშვნები')
                             ->rows(4),
+                    ]),
+
+                Section::make('სურათი')
+                    ->collapsed()
+                    ->schema([
+                        ViewField::make('product_image_preview')
+                            ->label('')
+                            ->view('filament.components.product-image-preview')
+                            ->viewData(fn ($record) => [
+                                'thumbUrl' => $record?->primary_image_url,
+                            ]),
                     ]),
             ]);
     }

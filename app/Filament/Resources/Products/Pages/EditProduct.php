@@ -10,6 +10,8 @@ class EditProduct extends EditRecord
 {
     protected static string $resource = ProductResource::class;
 
+    protected static ?string $title = 'პროდუქტის რედაქტირება';
+
     protected function getHeaderActions(): array
     {
         return [

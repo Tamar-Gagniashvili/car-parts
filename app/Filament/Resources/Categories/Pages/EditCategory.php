@@ -10,6 +10,8 @@ class EditCategory extends EditRecord
 {
     protected static string $resource = CategoryResource::class;
 
+    protected static ?string $title = 'კატეგორიის რედაქტირება';
+
     protected function getHeaderActions(): array
     {
         return [

@@ -11,6 +11,13 @@ class Product extends Model
 {
     use HasFactory;
 
+    public function getPrimaryImageUrlAttribute(): ?string
+    {
+        return $this->images()
+            ->orderByRaw('sort_order is null, sort_order asc')
+            ->value('thumb_url');
+    }
+
     protected $fillable = [
         'sku',
         'name',

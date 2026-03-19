@@ -10,6 +10,8 @@ class ListCategories extends ListRecords
 {
     protected static string $resource = CategoryResource::class;
 
+    protected static ?string $title = 'კატეგორიები';
+
     protected function getHeaderActions(): array
     {
         return [

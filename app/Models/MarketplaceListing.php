@@ -11,6 +11,19 @@ class MarketplaceListing extends Model
 {
     use HasFactory;
 
+    public function getExternalUrlAttribute(): ?string
+    {
+        if (! $this->external_id) {
+            return null;
+        }
+
+        if (($this->channel instanceof MarketplaceChannel ? $this->channel : MarketplaceChannel::from($this->channel)) !== MarketplaceChannel::MyParts) {
+            return null;
+        }
+
+        return "https://myparts.ge/ka/pr/{$this->external_id}";
+    }
+
     protected $fillable = [
         'product_id',
         'channel',
@@ -21,6 +34,8 @@ class MarketplaceListing extends Model
         'external_price',
         'external_currency_id',
         'external_quantity',
+        'external_thumb_url',
+        'external_large_url',
         'views',
         'create_date',
         'update_date',

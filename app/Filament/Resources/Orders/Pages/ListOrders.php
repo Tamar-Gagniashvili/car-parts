@@ -10,6 +10,8 @@ class ListOrders extends ListRecords
 {
     protected static string $resource = OrderResource::class;
 
+    protected static ?string $title = 'შეკვეთები';
+
     protected function getHeaderActions(): array
     {
         return [

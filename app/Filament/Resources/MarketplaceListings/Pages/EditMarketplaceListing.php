@@ -10,6 +10,8 @@ class EditMarketplaceListing extends EditRecord
 {
     protected static string $resource = MarketplaceListingResource::class;
 
+    protected static ?string $title = 'განცხადების რედაქტირება';
+
     protected function getHeaderActions(): array
     {
         return [

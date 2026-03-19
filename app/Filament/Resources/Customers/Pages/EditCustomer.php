@@ -10,6 +10,8 @@ class EditCustomer extends EditRecord
 {
     protected static string $resource = CustomerResource::class;
 
+    protected static ?string $title = 'კლიენტის რედაქტირება';
+
     protected function getHeaderActions(): array
     {
         return [

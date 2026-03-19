@@ -59,12 +59,13 @@ class OrderItemsRelationManager extends RelationManager
                 TextColumn::make('total_price')->label('ჯამი')->money('GEL')->alignEnd()->sortable(),
             ])
             ->headerActions([
-                CreateAction::make(),
+                CreateAction::make()->iconButton(),
             ])
             ->actions([
-                EditAction::make(),
-                DeleteAction::make(),
+                EditAction::make()->iconButton(),
+                DeleteAction::make()->iconButton(),
             ])
+            ->emptyStateHeading('მონაცემები ვერ მოიძებნა')
             ->bulkActions([
                 DeleteBulkAction::make(),
             ]);

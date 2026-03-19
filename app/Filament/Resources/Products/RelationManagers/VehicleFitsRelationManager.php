@@ -56,12 +56,13 @@ class VehicleFitsRelationManager extends RelationManager
                 TextColumn::make('volume')->toggleable(isToggledHiddenByDefault: true),
             ])
             ->headerActions([
-                CreateAction::make(),
+                CreateAction::make()->iconButton(),
             ])
             ->actions([
-                EditAction::make(),
-                DeleteAction::make(),
+                EditAction::make()->iconButton(),
+                DeleteAction::make()->iconButton(),
             ])
+            ->emptyStateHeading('მონაცემები ვერ მოიძებნა')
             ->bulkActions([
                 DeleteBulkAction::make(),
             ]);

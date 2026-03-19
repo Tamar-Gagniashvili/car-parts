@@ -10,6 +10,8 @@ class ListMarketplaceListings extends ListRecords
 {
     protected static string $resource = MarketplaceListingResource::class;
 
+    protected static ?string $title = 'განცხადებები';
+
     protected function getHeaderActions(): array
     {
         return [

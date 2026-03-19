@@ -10,6 +10,8 @@ class EditOrder extends EditRecord
 {
     protected static string $resource = OrderResource::class;
 
+    protected static ?string $title = 'შეკვეთის რედაქტირება';
+
     protected function getHeaderActions(): array
     {
         return [

@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources\Products\RelationManagers;
 
+use App\Enums\Currency;
 use App\Enums\MarketplaceChannel;
+use App\Support\MoneyFormatter;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -57,19 +59,26 @@ class MarketplaceListingsRelationManager extends RelationManager
                     ->label('არხი')
                     ->sortable(),
                 TextColumn::make('external_id')->label('გარე ID')->searchable()->sortable(),
-                TextColumn::make('external_price')->label('ფასი')->money('GEL')->sortable(),
+                TextColumn::make('external_price')
+                    ->label('ფასი')
+                    ->formatStateUsing(fn ($state, $record) => MoneyFormatter::format(
+                        amount: $state !== null ? (float) $state : null,
+                        currency: Currency::fromId($record->external_currency_id),
+                    ))
+                    ->sortable(),
                 TextColumn::make('external_quantity')->label('რაოდენობა')->sortable(),
                 TextColumn::make('views')->label('ნახვები')->sortable()->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('update_date')->dateTime()->since()->label('განახლდა')->sortable()->toggleable(),
                 TextColumn::make('last_synced_at')->dateTime()->since()->label('სინქრონიზაცია')->sortable()->toggleable(isToggledHiddenByDefault: true),
             ])
             ->headerActions([
-                CreateAction::make(),
+                CreateAction::make()->iconButton(),
             ])
             ->actions([
-                EditAction::make(),
-                DeleteAction::make(),
+                EditAction::make()->iconButton(),
+                DeleteAction::make()->iconButton(),
             ])
+            ->emptyStateHeading('მონაცემები ვერ მოიძებნა')
             ->bulkActions([
                 DeleteBulkAction::make(),
             ]);

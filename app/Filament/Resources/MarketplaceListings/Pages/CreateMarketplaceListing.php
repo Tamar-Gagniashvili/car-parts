@@ -8,4 +8,6 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateMarketplaceListing extends CreateRecord
 {
     protected static string $resource = MarketplaceListingResource::class;
+
+    protected static ?string $title = 'განცხადების შექმნა';
 }
