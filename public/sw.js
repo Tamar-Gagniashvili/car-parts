@@ -1,9 +1,9 @@
-const CACHE_NAME = 'car-parts-crm-v1';
+const CACHE_NAME = 'car-parts-crm-v2';
 const URLS_TO_CACHE = [
   '/admin',
   '/manifest.webmanifest',
-  '/icons/icon-192.svg',
-  '/icons/icon-512.svg',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png',
 ];
 
 self.addEventListener('install', (event) => {
