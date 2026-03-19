@@ -1,4 +1,4 @@
-const CACHE_NAME = 'car-parts-crm-v2';
+const CACHE_NAME = 'car-parts-crm-v4';
 const URLS_TO_CACHE = [
   '/admin',
   '/manifest.webmanifest',
