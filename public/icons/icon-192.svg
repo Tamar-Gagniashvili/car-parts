@@ -1,9 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
-  <rect width="192" height="192" rx="36" fill="#f59e0b"/>
-  <g fill="#111827">
-    <circle cx="56" cy="126" r="16"/>
-    <circle cx="136" cy="126" r="16"/>
-    <path d="M34 108h14l16-34h56l16 34h22v14h-10a22 22 0 0 0-24-16 22 22 0 0 0-24 16H80a22 22 0 0 0-24-16 22 22 0 0 0-24 16H24v-14h10z"/>
-    <rect x="72" y="54" width="48" height="14" rx="4"/>
+  <!-- Outer rim -->
+  <circle cx="96" cy="96" r="72" fill="none" stroke="#2563eb" stroke-width="12"/>
+  <!-- Inner circle / hub -->
+  <circle cx="96" cy="96" r="24" fill="#2563eb"/>
+  <!-- Spokes (5-spoke design) -->
+  <g stroke="#2563eb" stroke-width="10" stroke-linecap="round">
+    <line x1="96" y1="96" x2="96" y2="36"/>
+    <line x1="96" y1="96" x2="135.5" y2="67.5"/>
+    <line x1="96" y1="96" x2="135.5" y2="124.5"/>
+    <line x1="96" y1="96" x2="56.5" y2="124.5"/>
+    <line x1="96" y1="96" x2="56.5" y2="67.5"/>
   </g>
 </svg>
