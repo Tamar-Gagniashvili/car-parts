@@ -69,23 +69,23 @@ class MyPartsImportService
         $category = $this->resolveCategoryFromMyParts($data);
 
         // Deduplication heuristic: same name + category + phone is considered the same product.
-        $query = Product::query()->where('name', $data->title);
+        // $query = Product::query()->where('name', $data->title);
 
-        if ($category) {
-            $query->where('category_id', $category->id);
-        }
+        // if ($category) {
+        //     $query->where('category_id', $category->id);
+        // }
 
-        if ($data->phone) {
-            $query->where('phone', $data->phone);
-        }
+        // if ($data->phone) {
+        //     $query->where('phone', $data->phone);
+        // }
 
-        $existing = $query->first();
+        // $existing = $query->first();
 
-        if ($existing) {
-            $this->updateProductFromListing($existing, $data);
+        // if ($existing) {
+        //     $this->updateProductFromListing($existing, $data);
 
-            return $existing;
-        }
+        //     return $existing;
+        // }
 
         return Product::query()->create([
             'sku' => null,

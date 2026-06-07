@@ -2,6 +2,9 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Widgets\MonthlySalesChartWidget;
+use App\Filament\Widgets\MonthlyOrdersCountChartWidget;
+use App\Filament\Widgets\MonthlyProductsSoldChartWidget;
 use App\Filament\Widgets\StatsOverviewWidget;
 use Filament\Pages\Dashboard as BaseDashboard;
 
@@ -17,6 +20,9 @@ class Dashboard extends BaseDashboard
     {
         return [
             StatsOverviewWidget::class,
+            MonthlySalesChartWidget::class,
+            MonthlyProductsSoldChartWidget::class,
+            MonthlyOrdersCountChartWidget::class,
         ];
     }
 }

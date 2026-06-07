@@ -26,12 +26,12 @@ class OrdersTable
                     ->copyable()
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('customer.name')
-                    ->label('კლიენტი')
-                    ->icon('heroicon-o-user')
-                    ->searchable()
-                    ->sortable()
-                    ->toggleable(),
+                // TextColumn::make('customer.name')
+                //     ->label('კლიენტი')
+                //     ->icon('heroicon-o-user')
+                //     ->searchable()
+                //     ->sortable()
+                //     ->toggleable(),
                 TextColumn::make('status')
                     ->badge()
                     ->formatStateUsing(function ($state): string {
