@@ -57,12 +57,14 @@ class MonthlyOrdersSeeder extends Seeder
         // Realistic variability: different number of orders each month
         $orderCount = random_int(5, 15);
         $budgets = $this->distribute($target, $orderCount);
-        $daysInMonth = Carbon::create($this->year, $this->month)->daysInMonth;
+        $now = Carbon::now();
+        $isCurrentMonth = $this->year === $now->year && $this->month === $now->month;
+        $maxDay = $isCurrentMonth ? $now->day : Carbon::create($this->year, $this->month)->daysInMonth;
 
         foreach ($budgets as $budget) {
             $channel = random_int(1, 100) <= 80 ? SaleChannel::MyParts : SaleChannel::Internal;
             $customer = $customers->isNotEmpty() ? $customers->random() : null;
-            $date = Carbon::create($this->year, $this->month, random_int(1, $daysInMonth), random_int(10, 22), random_int(0, 59), random_int(0, 59));
+            $date = Carbon::create($this->year, $this->month, random_int(1, $maxDay), random_int(10, 22), random_int(0, 59), random_int(0, 59));
 
             $order = Order::factory()->create([
                 'customer_id' => $customer?->id,
