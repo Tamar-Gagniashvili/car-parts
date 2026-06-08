@@ -5,12 +5,17 @@ namespace App\Filament\Resources\Orders\Tables;
 use App\Enums\OrderStatus;
 use App\Enums\PaymentStatus;
 use App\Enums\SaleChannel;
+use App\Filament\Exports\OrderExporter;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ExportAction;
+use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class OrdersTable
 {
@@ -167,6 +172,32 @@ class OrdersTable
                     ->relationship('customer', 'name')
                     ->searchable()
                     ->preload(),
+                Filter::make('sold_at')
+                    ->label('გაყიდვის თარიღი')
+                    ->form([
+                        DatePicker::make('from')
+                            ->label('დან')
+                            ->native(false),
+                        DatePicker::make('until')
+                            ->label('მდე')
+                            ->native(false),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when($data['from'], fn (Builder $q, $date) => $q->whereDate('sold_at', '>=', $date))
+                            ->when($data['until'], fn (Builder $q, $date) => $q->whereDate('sold_at', '<=', $date));
+                    })
+                    ->indicateUsing(function (array $data): array {
+                        $indicators = [];
+                        if ($data['from'] ?? null) {
+                            $indicators[] = 'დან: ' . $data['from'];
+                        }
+                        if ($data['until'] ?? null) {
+                            $indicators[] = 'მდე: ' . $data['until'];
+                        }
+
+                        return $indicators;
+                    }),
             ])
             ->emptyStateHeading('მონაცემები ვერ მოიძებნა')
             ->defaultSort('sold_at', 'desc')
@@ -174,6 +205,9 @@ class OrdersTable
                 EditAction::make()->iconButton(),
             ])
             ->toolbarActions([
+                ExportAction::make()
+                    ->exporter(OrderExporter::class)
+                    ->label('ექსპორტი'),
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
